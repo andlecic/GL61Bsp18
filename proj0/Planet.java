@@ -39,7 +39,7 @@ public class Planet {
 		return Planet.G_constant * this.mass * p.mass / Math.pow(this.calcDistance(p), 2);
 	}
 
-	public double calcNetForceExertedByX(Planet[] allPlanets) {
+	public double calcForceExertedByX(Planet[] allPlanets) {
 		double fx_now = 0;
 		for (Planet p : allPlanets) {
 			if (this.equals(p)) {
@@ -51,7 +51,7 @@ public class Planet {
 		}
 		return fx_now;
 	}
-	public double calcNetForceExertedByY(Planet[] allPlanets) {
+	public double calcForceExertedByY(Planet[] allPlanets) {
 		double fy_now = 0;
 		for (Planet p : allPlanets) {
 			if (this.equals(p)) {
@@ -72,4 +72,7 @@ public class Planet {
 		this.xxPos = this.xxPos + dt * this.xxVel;
 		this.yyPos = this.yyPos + dt * this.yyVel;
 	}
+	 public void draw() {
+	 	StdDraw.picture(this.xxPos, this.yyPos, this.imgFileName);
+	 }
 }

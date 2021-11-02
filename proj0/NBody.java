@@ -43,8 +43,8 @@ public class NBody{
 			double[] yForce = new double[planets.length];
 			int i = 0;
 			for (Planet p : planets) {
-				xForce[i] = p.calcNetForceExertedByX(planets);
-				yForce[i] = p.calcNetForceExertedByY(planets);
+				xForce[i] = p.calcForceExertedByX(planets);
+				yForce[i] = p.calcForceExertedByY(planets);
 				// p.update(dt, xForce[i], yForce[i]);
 				i = i + 1;
 			}

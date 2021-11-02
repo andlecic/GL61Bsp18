@@ -39,26 +39,35 @@ public class Planet {
 		return Planet.G_constant * this.mass * p.mass / Math.pow(this.calcDistance(p), 2);
 	}
 
-	public double calcForceExertedByX(Planet[] allPlanets) {
+	public double calcForceExertedByX(Planet p) {
+		double x_distance = p.xxPos - this.xxPos;
+		double fx_now = this.calcForceExertedBy(p) * x_distance / this.calcDistance(p);
+		return fx_now;
+	}
+	public double calcForceExertedByY(Planet p) {
+		double y_distance = p.yyPos - this.yyPos;
+		double fy_now = this.calcForceExertedBy(p) * y_distance / this.calcDistance(p);
+		return fy_now;
+	}
+
+	public double calcNetForceExertedByX(Planet[] allPlanets) {
 		double fx_now = 0;
 		for (Planet p : allPlanets) {
 			if (this.equals(p)) {
 				continue;
 			} else {
-				double x_distance = p.xxPos - this.xxPos;
-				fx_now = fx_now + this.calcForceExertedBy(p) * x_distance / this.calcDistance(p);
+				fx_now = fx_now + calcForceExertedByX(p);
 			}
 		}
 		return fx_now;
 	}
-	public double calcForceExertedByY(Planet[] allPlanets) {
+	public double calcNetForceExertedByY(Planet[] allPlanets) {
 		double fy_now = 0;
 		for (Planet p : allPlanets) {
 			if (this.equals(p)) {
 				continue;
 			} else {
-				double y_distance = p.yyPos - this.yyPos;
-				fy_now = fy_now + this.calcForceExertedBy(p) * y_distance / this.calcDistance(p);
+				fy_now = fy_now + calcForceExertedByY(p);
 			}
 		}
 		return fy_now;

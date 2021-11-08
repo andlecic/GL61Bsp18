@@ -35,8 +35,8 @@ public class LinkedListDequeTest {
 	  * && is the "and" operation. */
 	public static void addIsEmptySizeTest() {
 		System.out.println("Running add/isEmpty/Size test.");
-		System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
-		/*
+/**		System.out.println("Make sure to uncomment the lines below (and delete this print statement).");*/
+
 		LinkedListDeque<String> lld1 = new LinkedListDeque<String>();
 
 		boolean passed = checkEmpty(true, lld1.isEmpty());
@@ -58,7 +58,7 @@ public class LinkedListDequeTest {
 		lld1.printDeque();
 
 		printTestStatus(passed);
-		*/
+
 	}
 
 	/** Adds an item, then removes an item, and ensures that dll is empty afterwards. */
@@ -66,8 +66,8 @@ public class LinkedListDequeTest {
 
 		System.out.println("Running add/remove test.");
 
-		System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
-		/*
+		//System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
+
 		LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
 		// should be empty 
 		boolean passed = checkEmpty(true, lld1.isEmpty());
@@ -76,17 +76,39 @@ public class LinkedListDequeTest {
 		// should not be empty 
 		passed = checkEmpty(false, lld1.isEmpty()) && passed;
 
+//		lld1.get(0);
+//		//should get 10
+//		passed = checkEmpty(false, lld1.isEmpty()) && passed;
 		lld1.removeFirst();
 		// should be empty 
 		passed = checkEmpty(true, lld1.isEmpty()) && passed;
 
+
+
 		printTestStatus(passed);
-		*/
+
 	}
 
 	public static void main(String[] args) {
 		System.out.println("Running tests.\n");
 		addIsEmptySizeTest();
 		addRemoveTest();
+		LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
+		lld1.addFirst(5);
+		lld1.addFirst(4);
+		lld1.addFirst(3);
+		lld1.addFirst(2);
+		lld1.addFirst(1);
+		lld1.addFirst(0);
+		lld1.addLast(6);
+		System.out.println(lld1.getRecursive(0));
+		System.out.println(lld1.getRecursive(1));
+		System.out.println(lld1.getRecursive(2));
+		System.out.println(lld1.getRecursive(3));
+		System.out.println(lld1.getRecursive(4));
+		System.out.println(lld1.getRecursive(5));
+		System.out.println(lld1.getRecursive(6));
+		System.out.println(lld1.getRecursive(7));
+
 	}
 } 

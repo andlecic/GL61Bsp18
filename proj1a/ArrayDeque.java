@@ -69,10 +69,13 @@ public class ArrayDeque<T> {
         int sizeFirstHalf = items.length - firstindex;
         System.arraycopy(items, firstindex, a, 0, sizeFirstHalf);
         System.arraycopy(items, 0, a, sizeFirstHalf, size - sizeFirstHalf);
-        //if ?
-        items = a;
-        firstindex = 0;
-        lastindex = size - 1;
+        if (lastindex < firstindex) {
+            items = a;
+            firstindex = 0;
+            lastindex = size - 1;
+        } else {
+            System.arraycopy(items, firstindex, a, 0, size);
+        }
     }
 
     public T removeFirst() {

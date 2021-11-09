@@ -1,6 +1,6 @@
 public class ArrayDeque<T> {
-    T[] items;
-    int size;
+    private T[] items;
+    private int size;
 
     public ArrayDeque() {
         items = (T []) new Object[8];
@@ -110,9 +110,4 @@ public class ArrayDeque<T> {
         }
         return items[index];
     }
-
-    public int length() {
-        return items.length;
-    }
-
 }

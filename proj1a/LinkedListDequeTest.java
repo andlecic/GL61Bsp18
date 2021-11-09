@@ -93,22 +93,21 @@ public class LinkedListDequeTest {
 		System.out.println("Running tests.\n");
 		addIsEmptySizeTest();
 		addRemoveTest();
-		LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
-		lld1.addFirst(5);
-		lld1.addFirst(4);
-		lld1.addFirst(3);
-		lld1.addFirst(2);
-		lld1.addFirst(1);
-		lld1.addFirst(0);
-		lld1.addLast(6);
-		System.out.println(lld1.getRecursive(0));
-		System.out.println(lld1.getRecursive(1));
-		System.out.println(lld1.getRecursive(2));
-		System.out.println(lld1.getRecursive(3));
-		System.out.println(lld1.getRecursive(4));
-		System.out.println(lld1.getRecursive(5));
-		System.out.println(lld1.getRecursive(6));
-		System.out.println(lld1.getRecursive(7));
-
+//		LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
+//		lld1.addFirst(5);
+//		lld1.addFirst(4);
+//		lld1.addFirst(3);
+//		lld1.addFirst(2);
+//		lld1.addFirst(1);
+//		lld1.addFirst(0);
+//		lld1.addLast(6);
+//		System.out.println(lld1.getRecursive(0));
+//		System.out.println(lld1.getRecursive(1));
+//		System.out.println(lld1.getRecursive(2));
+//		System.out.println(lld1.getRecursive(3));
+//		System.out.println(lld1.getRecursive(4));
+//		System.out.println(lld1.getRecursive(5));
+//		System.out.println(lld1.getRecursive(6));
+//		System.out.println(lld1.getRecursive(7));
 	}
 } 

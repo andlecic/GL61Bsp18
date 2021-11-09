@@ -3,9 +3,9 @@ public class LinkedListDeque<T> {
     private int size;
 
     private class TNode {
-        public T item;
-        public TNode next;
-        public TNode previous;
+        private T item;
+        private TNode next;
+        private TNode previous;
 
         public TNode(T i, TNode n, TNode p) {
             item = i;
@@ -21,11 +21,11 @@ public class LinkedListDeque<T> {
         size = 0;
     }
 
-    private void LinkedListDeque(T item) {
-        sentinel = new TNode(null, null, null);
-        sentinel.next = new TNode(item, sentinel, sentinel);
-        sentinel.previous = sentinel.next;
-    }
+//    private void LinkedListDeque(T item) {
+//        sentinel = new TNode(null, null, null);
+//        sentinel.next = new TNode(item, sentinel, sentinel);
+//        sentinel.previous = sentinel.next;
+//    }
 
     public void addFirst(T item) {
         size += 1;
@@ -54,10 +54,10 @@ public class LinkedListDeque<T> {
     }
 
     public void printDeque() {
-        TNode copy_list_pointer = sentinel;
-        while (copy_list_pointer.next != sentinel) {
-            System.out.print(copy_list_pointer.next + " ");
-            copy_list_pointer = copy_list_pointer.next;
+        TNode lstpointer = sentinel;
+        while (lstpointer.next != sentinel) {
+            System.out.print(lstpointer.next + " ");
+            lstpointer = lstpointer.next;
         }
     }
 
@@ -92,12 +92,12 @@ public class LinkedListDeque<T> {
             return null;
         }
         int i = 0;
-        TNode temp_pointer = sentinel.next;
+        TNode temppointer = sentinel.next;
         while (i < index) {
             i += 1;
-            temp_pointer = temp_pointer.next;
+            temppointer = temppointer.next;
         }
-        return temp_pointer.item;
+        return temppointer.item;
     }
 
 

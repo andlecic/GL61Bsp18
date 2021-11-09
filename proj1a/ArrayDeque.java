@@ -20,28 +20,28 @@ public class ArrayDeque<T> {
     }
 
 // check if R (size/items.length) is smaller than 0.25
-    private boolean Is_R_small(){
-        if (((float)size / items.length) < 0.25) {
+    private boolean is_r_small() {
+        if (((float) size / items.length) < 0.25) {
             return true;
         }
         return false;
     }
 //  resize to remove the first item
     private void resizedFirstRemove(int capacity) {
-        if (Is_R_small()) {
+        if (is_r_small()) {
             capacity = capacity / 2;
         }
         T[] a = (T []) new Object[capacity];
-        System.arraycopy(items, 1, a, 0, size-1);
+        System.arraycopy(items, 1, a, 0, size - 1);
         items = a;
     }
 
     private void resizedLastRemove(int capacity) {
-        if (Is_R_small()) {
+        if (is_r_small()) {
             capacity = capacity / 2;
         }
         T[] a = (T []) new Object[capacity];
-        System.arraycopy(items, 0, a, 0, size-1);
+        System.arraycopy(items, 0, a, 0, size - 1);
         items = a;
     }
 
@@ -55,15 +55,15 @@ public class ArrayDeque<T> {
         size += 1;
     }
 
-    public void addLast(T item){
-            if (size == items.length) {
-                resizedLast(size * 4);
-            } else {
-                resizedLast(items.length);
-            }
-            items[size] = item;
-            size += 1;
+    public void addLast(T item) {
+        if (size == items.length) {
+            resizedLast(size * 4);
+        } else {
+            resizedLast(items.length);
         }
+        items[size] = item;
+        size += 1;
+    }
 
     public boolean isEmpty() {
         if (size == 0) {
@@ -98,7 +98,7 @@ public class ArrayDeque<T> {
             return null;
         }
         T returnItem = get(size - 1);
-        items[size-1] = null;
+        items[size - 1] = null;
         resizedLastRemove(items.length);
         size -= 1;
         return returnItem;

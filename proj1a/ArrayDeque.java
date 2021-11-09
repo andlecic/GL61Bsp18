@@ -94,7 +94,7 @@ public class ArrayDeque<T> {
             firstindex = 0;
             lastindex = 0;
         }
-        if ((float) size / items.length < 0.25 && size > 16) {
+        if ((float) size / items.length < 0.5 && size > 16) {
             downsize();
         }
         return returnItem;
@@ -116,7 +116,7 @@ public class ArrayDeque<T> {
             lastindex = 0;
             firstindex = 0;
         }
-        if ((float) size / items.length < 0.25 && size > 16) {
+        if ((float) size / items.length < 0.5 && size > 16) {
             downsize();
         }
         return returnItem;

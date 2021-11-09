@@ -54,7 +54,7 @@ public class ArrayDeque<T> {
         size += 1;
     }
 
-    public void upsize() {
+    private void upsize() {
         T[] a = (T []) new Object[items.length * Rfactor];
         int sizeFirstHalf = items.length - firstindex;
         System.arraycopy(items, firstindex, a, 0, sizeFirstHalf);
@@ -64,18 +64,18 @@ public class ArrayDeque<T> {
         lastindex = size - 1;
     }
 
-    public void downsize() {
+    private void downsize() {
         T[] a = (T []) new Object[items.length / 2];
-        int sizeFirstHalf = items.length - firstindex;
-        System.arraycopy(items, firstindex, a, 0, sizeFirstHalf);
-        System.arraycopy(items, 0, a, sizeFirstHalf, size - sizeFirstHalf);
         if (lastindex < firstindex) {
-            items = a;
-            firstindex = 0;
-            lastindex = size - 1;
+            int sizeFirstHalf = items.length - firstindex;
+            System.arraycopy(items, firstindex, a, 0, sizeFirstHalf);
+            System.arraycopy(items, 0, a, sizeFirstHalf, size - sizeFirstHalf);
         } else {
             System.arraycopy(items, firstindex, a, 0, size);
         }
+        items = a;
+        firstindex = 0;
+        lastindex = size - 1;
     }
 
     public T removeFirst() {
@@ -133,8 +133,8 @@ public class ArrayDeque<T> {
     }
 
     public void printDeque() {
-        for (T i : items) {
-            System.out.print(i + " ");
+        for (int i = 0; i < items.length; i++) {
+            System.out.print(items[i] + " ");
         }
     }
 
@@ -142,6 +142,6 @@ public class ArrayDeque<T> {
         if (size <= index) {
             return null;
         }
-        return items[index];
+        return items[(index + firstindex) % items.length];
     }
 }

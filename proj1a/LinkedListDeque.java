@@ -30,15 +30,15 @@ public class LinkedListDeque<T> {
     public void addFirst(T item) {
         size += 1;
         TNode first = new TNode(item, sentinel.next, sentinel);
-        sentinel.next.previous = first;
         sentinel.next = first;
+        first.next.previous = first;
     }
 
     public void addLast(T item) {
         size += 1;
         TNode last = new TNode(item, sentinel, sentinel.previous);
-        sentinel.previous.next = last;
         sentinel.previous = last;
+        last.previous.next = last;
     }
 
     public boolean isEmpty() {

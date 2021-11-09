@@ -19,6 +19,5 @@ public class ArrayDequeMyTest {
         ad1.printDeque();
         System.out.println(" ");
         System.out.println("size is " + ad1.size());
-        System.out.println((float)ad1.size() / ad1.length());
     }
 }

@@ -49,7 +49,6 @@ public class LinkedListDeque<T> {
     }
 
     public int size() {
-
         return size;
     }
 
@@ -88,12 +87,12 @@ public class LinkedListDeque<T> {
     }
 
     public T get(int index) {
-        if (index + 1 > size) {
-            return null;
-        }
+//        if (index + 1 > size) {
+//            return null;
+//        }
         int i = 0;
         TNode temppointer = sentinel.next;
-        while (i < index) {
+        while (i < index && temppointer != sentinel) {
             i += 1;
             temppointer = temppointer.next;
         }
@@ -105,7 +104,7 @@ public class LinkedListDeque<T> {
         if (index > size) {
             return null;
         }
-        if (index == 0) {
+        if (index <= 0) {
             return nodenow.item;
         } else {
             return getRecursiveHelper(index - 1, nodenow.next);

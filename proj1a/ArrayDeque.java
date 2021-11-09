@@ -1,70 +1,123 @@
 public class ArrayDeque<T> {
     private T[] items;
     private int size;
+    private int firstindex;
+    private int lastindex;
+    private static final int start_size = 8;
+    private static final int Rfactor = 2;
+
 
     public ArrayDeque() {
-        items = (T []) new Object[8];
+        items = (T []) new Object[start_size];
         size = 0;
-    }
-// resize to add one item at the beginning of the array
-    private void resizeFirst(int capacity) {
-        T[] a = (T []) new Object[capacity];
-        System.arraycopy(items, 0, a, 1, size);
-        items = a;
-    }
-// resize to add one item at the end of array//
-    private void resizedLast(int capacity) {
-        T[] a = (T []) new Object[capacity];
-        System.arraycopy(items, 0, a, 0, size);
-        items = a;
-    }
-
-// check if R (size/items.length) is smaller than 0.25
-    private boolean is_r_small() {
-        if (((float) size / items.length) < 0.25) {
-            return true;
-        }
-        return false;
-    }
-//  resize to remove the first item
-    private void resizedFirstRemove(int capacity) {
-        if (is_r_small()) {
-            capacity = capacity / 2;
-        }
-        T[] a = (T []) new Object[capacity];
-        System.arraycopy(items, 1, a, 0, size - 1);
-        items = a;
-    }
-
-    private void resizedLastRemove(int capacity) {
-        if (is_r_small()) {
-            capacity = capacity / 2;
-        }
-        T[] a = (T []) new Object[capacity];
-        System.arraycopy(items, 0, a, 0, size - 1);
-        items = a;
+        firstindex = 0;
+        lastindex = 0;
     }
 
     public void addFirst(T item) {
-        if (size == items.length) {
-            resizeFirst(size * 4);
-        } else {
-            resizeFirst(items.length);
+        if (size == 0) {
+            firstindex = 0;
+            lastindex = 0;
+            items[0] = item;
+            size += 1;
+            return;
         }
-        items[0] = item;
+        if (size == items.length) {
+            upsize();
+        }
+        if (firstindex == 0) {
+            firstindex = items.length - 1;
+        } else {
+            firstindex -= 1;
+        }
+        items[firstindex] = item;
         size += 1;
     }
 
     public void addLast(T item) {
-        if (size == items.length) {
-            resizedLast(size * 4);
-        } else {
-            resizedLast(items.length);
+        if (size == 0) {
+            firstindex = 0;
+            lastindex = 0;
+            items[size] = item;
+            size += 1;
+            return;
         }
-        items[size] = item;
+        if (size == items.length) {
+            upsize();
+        }
+        if (lastindex == items.length - 1) {
+            lastindex = 0;
+        } else {
+            lastindex += 1;
+        }
+        items[lastindex] = item;
         size += 1;
     }
 
+    public void upsize() {
+        T[] a = (T []) new Object[items.length * Rfactor];
+        int sizeFirstHalf = items.length - firstindex;
+        System.arraycopy(items, firstindex, a, 0, sizeFirstHalf);
+        System.arraycopy(items, 0, a, sizeFirstHalf, size - sizeFirstHalf);
+        items = a;
+        firstindex = 0;
+        lastindex = size - 1;
+    }
+
+    public void downsize() {
+        T[] a = (T []) new Object[items.length / 2];
+        int sizeFirstHalf = items.length - firstindex;
+        System.arraycopy(items, firstindex, a, 0, sizeFirstHalf);
+        System.arraycopy(items, 0, a, sizeFirstHalf, size - sizeFirstHalf);
+        //if ?
+        items = a;
+        firstindex = 0;
+        lastindex = size - 1;
+    }
+
+    public T removeFirst() {
+        if (size == 0) {
+            return null;
+        }
+        T returnItem = items[firstindex];
+        items[firstindex] = null;
+        if (firstindex == items.length - 1) {
+            firstindex = 0;
+        } else {
+            firstindex += 1;
+        }
+        size -= 1;
+        if (size == 0) {
+            firstindex = 0;
+            lastindex = 0;
+        }
+        if ((float) size / items.length < 0.25) {
+            downsize();
+        }
+        return returnItem;
+    }
+
+    public T removeLast() {
+        if (size == 0) {
+            return null;
+        }
+        T returnItem = items[lastindex];
+        items[lastindex] = null;
+        if (lastindex == 0) {
+            lastindex = items.length - 1;
+        } else {
+            lastindex -= 1;
+        }
+        size -= 1;
+        if (size == 0) {
+            lastindex = 0;
+            firstindex = 0;
+        }
+        if ((float) size / items.length < 0.25) {
+            downsize();
+        }
+        return returnItem;
+    }
     public boolean isEmpty() {
         if (size == 0) {
             return true;
@@ -80,28 +133,6 @@ public class ArrayDeque<T> {
         for (T i : items) {
             System.out.print(i + " ");
         }
-    }
-
-    public T removeFirst() {
-        if (size == 0) {
-            return null;
-        }
-        T returnItem = get(0);
-        items[0] = null;
-        resizedFirstRemove(items.length);
-        size -= 1;
-        return returnItem;
-    }
-
-    public T removeLast() {
-        if (size == 0) {
-            return null;
-        }
-        T returnItem = get(size - 1);
-        items[size - 1] = null;
-        resizedLastRemove(items.length);
-        size -= 1;
-        return returnItem;
     }
 
     public T get(int index) {

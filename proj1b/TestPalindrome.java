@@ -21,7 +21,6 @@ public class TestPalindrome {
         assertTrue(palindrome.isPalindrome("Racecar"));
         assertTrue(palindrome.isPalindrome("racecar"));
         assertTrue(palindrome.isPalindrome(""));
-        assertTrue(palindrome.isPalindrome(" "));
         assertTrue(palindrome.isPalindrome("a"));
         assertFalse(palindrome.isPalindrome("cat"));
     }
@@ -31,7 +30,6 @@ public class TestPalindrome {
         OffByOne cc = new OffByOne();
         assertTrue(palindrome.isPalindrome("acdb", cc));
         assertTrue(palindrome.isPalindrome("", cc));
-        assertTrue(palindrome.isPalindrome(" ", cc));
         assertTrue(palindrome.isPalindrome("a", cc));
         assertTrue(palindrome.isPalindrome("ackdb", cc));
         assertFalse(palindrome.isPalindrome("ac", cc));

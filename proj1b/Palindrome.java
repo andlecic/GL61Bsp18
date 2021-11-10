@@ -15,7 +15,7 @@ public class Palindrome {
         return isPalindromeHelper(DequedWord);
     }
 
-    public boolean isPalindromeHelper(Deque<Character> DequedWord) {
+    private boolean isPalindromeHelper(Deque<Character> DequedWord) {
         if (DequedWord.size() <= 1) {
             return true;
         } else if (DequedWord.removeLast() != DequedWord.removeFirst()) {
@@ -30,7 +30,7 @@ public class Palindrome {
         return isPalindromeHelper(DequedWord, cc);
     }
 
-    public boolean isPalindromeHelper(Deque<Character> DequedWord, CharacterComparator cc) {
+    private boolean isPalindromeHelper(Deque<Character> DequedWord, CharacterComparator cc) {
         if (DequedWord.size() <= 1) {
             return true;
         } else if (!cc.equalChars(DequedWord.removeLast(),DequedWord.removeFirst())) {
